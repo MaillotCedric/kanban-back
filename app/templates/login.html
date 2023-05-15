@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block contenu %}
+
+    {% if user.is_authenticated %}
+        <div>You are already logged in</div>
+        <a href="{% url 'home' %}">Home</a>
+    {% else %}
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags %}
+                <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                {% else %}
+                <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                {% endif %}
+                    <strong>{{ message }}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form action="" method="POST">
+        {% csrf_token %}
+            <!-- Username input -->
+            <div class="form-group">
+                <label for="input-username">Username</label>
+                <input type="text" class="form-control" id="input-username" placeholder="Enter username" name="username">
+            </div>
+            <!-------------------->
+            <!-- Password input -->
+            <div class="form-group">
+                <label for="input-password">Password</label>
+                <input type="password" class="form-control" id="input-password" placeholder="Enter password" name="password">
+            </div>
+            <!-------------------->
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    {% endif %}
+
+{% endblock %}

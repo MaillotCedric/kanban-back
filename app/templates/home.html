@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'styles/home.css' %}">
+{% endblock %}
+
+{% block contenu %}
+    <h1>Home</h1>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'scripts/home.js' %}"></script>
+{% endblock %}
